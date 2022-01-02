@@ -4,6 +4,7 @@ import base_url from "./bootApi";
 import {Table} from "react-bootstrap";
 import moment from "moment";
 import {Button} from "reactstrap";
+import {Link} from "react-router-dom";
 
 
 const GetAllExpense=({empId,month,year})=> {
@@ -39,7 +40,8 @@ const GetAllExpense=({empId,month,year})=> {
                         <td>{moment(item.date).format('DD-MM-YYYY')}</td>
                         <td>{item.description}</td>
                         <td>{item.amount}</td>
-                        <td><Button color="danger" size="sm">Edit</Button></td>
+                        <td><Link to={`/update-expense/${item.expenseId}/${empId}`}>
+                            <Button color="danger" size="sm">Edit</Button></Link></td>
                     </tr>)}
                 </tbody>
             </Table>

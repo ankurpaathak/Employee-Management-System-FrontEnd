@@ -35,6 +35,7 @@ const UpdateEmployee=()=>{
                 console.log(response);
                 console.log("success");
                 toast.success("Employee Updated Successfully", {position: "bottom-center"})
+                window.location.reload(false);
             },
             (error) => {
                 console.log(error);
@@ -44,10 +45,11 @@ const UpdateEmployee=()=>{
     };
 
     return (
-        <Card style={{ marginTop: 5}}>
+        <Card style={{ marginTop: 5,width: '115%'}}>
+            <CardBody style={{backgroundColor:'#87bdd8', padding:'6px'}}>
+                <h2 className="text-center"><h4>Employee Update Form</h4></h2></CardBody>
             <CardBody>
                 <Fragment>
-                    <h2 className="text-center"><h4>Employee Update Form</h4></h2>
                     <Form onSubmit={handleEditForm}>
                         <Form.Group className="mb-3" controlId="formName">
                             <Form.Label>Employee Name</Form.Label>
@@ -72,8 +74,8 @@ const UpdateEmployee=()=>{
                                 editSetEmployee({...editEmployee,wagesPerHour: e.target.value});
                             }}/>
                         </Form.Group>
-                        <Button variant="primary" type="submit" className={"m-lg-2"} style={{transition:'0.1s'}}>Submit</Button>
-                        <Button variant={"warning"} type="reset" className={"m-lg-2"}>Clear</Button>
+                        <Button variant="outline-primary" type="submit" size="sm" className={"m-lg-2"} style={{transition:'0.1s'}}>Submit</Button>
+                        <Button variant="outline-danger" type="reset" size="sm" className={"m-lg-2"}>Clear</Button>
                     </Form>
                 </Fragment>
             </CardBody>

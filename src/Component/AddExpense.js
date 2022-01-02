@@ -1,10 +1,10 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {Button, Form} from "react-bootstrap";
+import {Button, Card, Form} from "react-bootstrap";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import base_url from "./bootApi";
 import {toast} from "react-toastify";
-import {Input} from "reactstrap";
+import {CardBody, Input} from "reactstrap";
 import moment from "moment";
 
 const AddExpense = () => {
@@ -45,8 +45,11 @@ const AddExpense = () => {
 
 
     return (
+        <Card style={{ marginTop: 5, width: '115%'}}>
+            <CardBody style={{backgroundColor:'#87bdd8',padding:'6px'}}>
+                <h4 className="text-center">Add Expenses</h4></CardBody>
+            <CardBody>
         <Fragment>
-            <h4 className="text-center">Add Expenses</h4>
             <Form onSubmit={handleForm}>
                 <Form.Group className="mb-3" controlId="formDate">
                     <Form.Label>Date</Form.Label>
@@ -78,6 +81,8 @@ const AddExpense = () => {
                 <Button variant="outline-danger" type="reset" className={"m-lg-2"} size="sm">Clear</Button>
             </Form>
         </Fragment>
+            </CardBody>
+        </Card>
     )
 }
 

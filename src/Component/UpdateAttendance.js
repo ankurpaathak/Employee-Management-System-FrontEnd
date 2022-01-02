@@ -61,10 +61,11 @@ const UpdateAttendance = () => {
     };
 
     return (
-        <Card style={{marginTop: 5, width: '45%'}}>
+        <Card style={{marginTop: 5, width: '115%'}}>
+            <CardBody style={{backgroundColor:'#87bdd8',padding:'6px'}}>
+                <h4 className="text-center">Attendance Update Form</h4></CardBody>
             <CardBody>
                 <Fragment>
-                    <h2 className="text-center"><h4>Attendance Update Form</h4></h2>
                     <Form onSubmit={handleUpdateAttendanceForm}>
                         <Form.Group className="mb-3" controlId="formDate">
                             <Form.Label>Date</Form.Label>

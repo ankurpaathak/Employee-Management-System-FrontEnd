@@ -1,11 +1,11 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {Button, Form} from "react-bootstrap";
+import {Button, Card, Form} from "react-bootstrap";
 import axios from "axios";
 import base_url from "./bootApi";
 import {toast} from "react-toastify";
 import {useParams} from "react-router-dom";
 import moment from "moment";
-import {Input} from "reactstrap";
+import {CardBody, Input} from "reactstrap";
 
 const AddAttendance = () => {
     const [attendance, setAttendance] = useState({});
@@ -45,8 +45,11 @@ const AddAttendance = () => {
     };
 
     return (
-        <Fragment>
-            <h4 className="text-center">Mark Attendance</h4>
+        <Card style={{ marginTop: 5, width: '115%'}}>
+            <CardBody style={{backgroundColor:'#87bdd8',padding:'6px'}}>
+                <h4 className="text-center">Mark Attendance</h4></CardBody>
+            <CardBody>
+                <Fragment>
             <Form onSubmit={handleForm}>
                 <Form.Group className="mb-3" controlId="formDate">
                     <Form.Label>Date</Form.Label>
@@ -70,7 +73,8 @@ const AddAttendance = () => {
                 <Button variant="outline-danger" type="reset" className={"m-lg-2"} size="sm">Clear</Button>
             </Form>
         </Fragment>
-
+            </CardBody>
+        </Card>
     )
 }
 

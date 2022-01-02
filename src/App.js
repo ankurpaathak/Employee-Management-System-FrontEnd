@@ -31,6 +31,7 @@ function App() {
                                 <Route path="/employee-details/:empId" element={<EmployeeDetails/>} exact/>
                                 <Route path="/update-employee/:empId" element={<UpdateEmployee/>} exact/>
                                 <Route path="/update-attendance/:attendanceId/:empId" element={<UpdateAttendance/>} exact/>
+                                {/*<Route path="/update-expense/:expenseId/:empId" element={<UpdateExpense/>} exact/>*/}
                             </Routes>
                         </Col>
                     </Row>

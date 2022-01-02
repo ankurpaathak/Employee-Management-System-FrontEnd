@@ -36,10 +36,11 @@ const AddEmployee = () => {
         );
     };
     return (
-        <Card style={{ marginTop: 5}}>
+        <Card style={{ marginTop: 5,width:'115%'}}>
+            <CardBody style={{backgroundColor:'#87bdd8', padding:'6px'}}>
+                <h4 className="text-center">New Employee Form</h4></CardBody>
             <CardBody>
         <Fragment>
-            <h2 className="text-center"><h4>Add Employee Form</h4></h2>
             <Form onSubmit={handleForm}>
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label>Employee Name</Form.Label>
@@ -65,8 +66,8 @@ const AddEmployee = () => {
             }}/>
 
             </Form.Group>
-            <Button variant="primary" type="submit" className={"m-lg-2"} style={{transition:'0.1s'}}>Add</Button>
-            <Button variant={"warning"} type="reset" className={"m-lg-2"} style={{transition:'0.1s'}}>Clear</Button>
+            <Button variant="outline-primary" type="submit" size="sm" className={"m-lg-2"} style={{transition:'0.1s'}}>Add</Button>
+            <Button variant="outline-danger" type="reset" size="sm" className={"m-lg-2"} style={{transition:'0.1s'}}>Clear</Button>
         </Form>
         </Fragment>
             </CardBody>
