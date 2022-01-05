@@ -11,6 +11,7 @@ import AddExpense from "./Component/AddExpense";
 import EmployeeDetails from "./Component/EmployeeDetails";
 import UpdateEmployee from "./Component/UpdateEmployee";
 import UpdateAttendance from "./Component/UpdateAttendance";
+import UpdateExpense from "./Component/UpdateExpense";
 
 function App() {
     return (
@@ -31,7 +32,7 @@ function App() {
                                 <Route path="/employee-details/:empId" element={<EmployeeDetails/>} exact/>
                                 <Route path="/update-employee/:empId" element={<UpdateEmployee/>} exact/>
                                 <Route path="/update-attendance/:attendanceId/:empId" element={<UpdateAttendance/>} exact/>
-                                {/*<Route path="/update-expense/:expenseId/:empId" element={<UpdateExpense/>} exact/>*/}
+                                <Route path="/update-expense/:expenseId/:empId" element={<UpdateExpense/>} exact/>
                             </Routes>
                         </Col>
                     </Row>

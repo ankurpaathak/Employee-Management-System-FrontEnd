@@ -66,7 +66,7 @@ const AddEmployee = () => {
             }}/>
 
             </Form.Group>
-            <Button variant="outline-primary" type="submit" size="sm" className={"m-lg-2"} style={{transition:'0.1s'}}>Add</Button>
+            <Button variant="outline-primary" type="submit" size="sm" className={"m-lg-2"} style={{transition:'0.1s'}}>Submit</Button>
             <Button variant="outline-danger" type="reset" size="sm" className={"m-lg-2"} style={{transition:'0.1s'}}>Clear</Button>
         </Form>
         </Fragment>

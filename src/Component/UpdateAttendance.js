@@ -9,7 +9,6 @@ import moment from "moment";
 
 const UpdateAttendance = () => {
     const [editAttendance, editSetAttendance] = useState({})
-    const [date, setDate] = useState()
     const {attendanceId, empId} = useParams();
 
     useEffect(() => {
@@ -20,7 +19,6 @@ const UpdateAttendance = () => {
             (response) => {
                 console.log(response);
                 editSetAttendance(response.data)
-                setDate(response.data.date)
             },
             (error) => {
                 console.log(error);
@@ -28,12 +26,7 @@ const UpdateAttendance = () => {
         );
     }, [attendanceId])
 
-    useEffect(() => {
-        console.log("date : ", date)
-    }, [date])
-
     const handleUpdateAttendanceForm = (e) => {
-        // editSetAttendance({...editAttendance, empId: empId})
         editSetAttendance({...editAttendance, empId: empId, attendanceId: attendanceId})
 
         updateAttendanceToServer({
@@ -44,7 +37,6 @@ const UpdateAttendance = () => {
         });
         e.preventDefault();
     };
-
 
     const updateAttendanceToServer = (data) => {
         axios.put(`${base_url}/attendance/update`, data).then(
@@ -70,13 +62,10 @@ const UpdateAttendance = () => {
                         <Form.Group className="mb-3" controlId="formDate">
                             <Form.Label>Date</Form.Label>
                             <Input type="date" placeholder="Enter Date" id="date"
-                                   value={moment(editAttendance.date).format('YYYY-MM-DD')}
+                                   value={moment(editAttendance.date,'DD-MM-YYYY').format('YYYY-MM-DD')}
                                    onChange={(e) => {
-                                       console.log(e.target.value)
-                                       console.log(moment(e.target.value).format('DD-MM-YYYY'))
                                        editSetAttendance({
                                            ...editAttendance,
-                                           // date: e.target.value
                                            date: moment(e.target.value).format('DD-MM-YYYY')
                                        });
                                    }}/>
@@ -98,7 +87,6 @@ const UpdateAttendance = () => {
             </CardBody>
         </Card>
     );
-
 
 }
 

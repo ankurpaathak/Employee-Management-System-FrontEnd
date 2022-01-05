@@ -9,8 +9,8 @@ import {CardBody, Input} from "reactstrap";
 
 const AddAttendance = () => {
     const [attendance, setAttendance] = useState({});
-
     const {empId} = useParams();
+    console.log("attendance", empId)
     useEffect(() => {
         document.title = "Add Attendance || Billing System";
     }, []);
