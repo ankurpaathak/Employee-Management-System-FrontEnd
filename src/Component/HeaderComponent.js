@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {Container, Nav, Navbar} from "react-bootstrap";
-import {Link} from "react-router-dom";
-import {Button} from "reactstrap";
 
 class HeaderComponent extends Component {
     constructor(props) {
