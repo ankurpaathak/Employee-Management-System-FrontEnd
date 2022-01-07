@@ -6,16 +6,23 @@ import {toast} from "react-toastify";
 import {Button, Card, Form} from "react-bootstrap";
 import {CardBody, Input} from "reactstrap";
 import moment from "moment";
+import {getToken} from "./Utility";
 
 const UpdateAttendance = () => {
     const [editAttendance, editSetAttendance] = useState({})
+    const [date] = useState(editAttendance.date);
     const {attendanceId, empId} = useParams();
 
     useEffect(() => {
         console.log("called 1")
 
         document.title = "Edit Attendance || Billing System";
-        axios.get(`${base_url}/attendance/${attendanceId}`).then(
+        axios.get(`${base_url}/attendance/${attendanceId}`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        }).then(
             (response) => {
                 console.log(response);
                 editSetAttendance(response.data)
@@ -39,7 +46,12 @@ const UpdateAttendance = () => {
     };
 
     const updateAttendanceToServer = (data) => {
-        axios.put(`${base_url}/attendance/update`, data).then(
+        axios.put(`${base_url}/attendance/update`, data,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        }).then(
             (response) => {
                 console.log(response);
                 console.log("success");
@@ -52,6 +64,10 @@ const UpdateAttendance = () => {
         );
     };
 
+    const clearField=()=>{
+        editSetAttendance("");
+    }
+
     return (
         <Card style={{marginTop: 5, width: '115%'}}>
             <CardBody style={{backgroundColor:'#87bdd8',padding:'6px'}}>
@@ -62,11 +78,11 @@ const UpdateAttendance = () => {
                         <Form.Group className="mb-3" controlId="formDate">
                             <Form.Label>Date</Form.Label>
                             <Input type="date" placeholder="Enter Date" id="date"
-                                   value={moment(editAttendance.date,'DD-MM-YYYY').format('YYYY-MM-DD')}
+                                   value={date}
                                    onChange={(e) => {
                                        editSetAttendance({
                                            ...editAttendance,
-                                           date: moment(e.target.value).format('DD-MM-YYYY')
+                                           date:moment(e.target.value,'YYYY-MM-DD').format('DD-MM-YYYY')
                                        });
                                    }}/>
                         </Form.Group>
@@ -81,7 +97,7 @@ const UpdateAttendance = () => {
                         </Form.Group>
                         <Button variant="outline-primary" type="submit" style={{transition: '0.1s'}}
                                 size='sm'>Submit</Button>
-                        <Button variant="outline-danger" type="reset" className={"m-lg-2"} size='sm'>Clear</Button>
+                        <Button variant="outline-danger" type="reset" className={"m-lg-2"} size='sm' onClick={clearField}>Clear</Button>
                     </Form>
                 </Fragment>
             </CardBody>

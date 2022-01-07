@@ -6,6 +6,7 @@ import base_url from "./bootApi";
 import {toast} from "react-toastify";
 import {CardBody, Input} from "reactstrap";
 import moment from "moment";
+import {getToken} from "./Utility";
 
 const AddExpense = () => {
     const [expense, setExpense] = useState({});
@@ -28,7 +29,12 @@ const AddExpense = () => {
     };
 
     const postExpense = (data) => {
-        axios.post(`${base_url}/expense/new`, data).then(
+        axios.post(`${base_url}/expense/new`, data,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        }).then(
             (response) => {
                 console.log(response);
                 console.log("success");

@@ -8,6 +8,7 @@ import GetAllAttendance from "./GetAllAttendance";
 import GetAllExpense from "./GetAllExpense";
 import EmployeeSalaryDetails from "./EmployeeSalaryDetails";
 import moment from "moment";
+import {getToken} from "./Utility";
 
 const EmployeeDetails = () => {
 
@@ -31,7 +32,12 @@ const EmployeeDetails = () => {
 
     useEffect(() => {
         document.title = "Employee Detail || Billing System";
-        axios.get(`${base_url}/employee/${empId}`).then(
+        axios.get(`${base_url}/employee/${empId}`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        }).then(
             (response) => {
                 console.log(response);
                 setEmployee(response.data)
@@ -45,7 +51,7 @@ const EmployeeDetails = () => {
 
     return (
         <Container>
-            <Card style={{marginTop: 5, width: '120%'}}>
+            <Card style={{marginTop: 8, width: '120%'}}>
                 <CardBody style={{backgroundColor: '#87bdd8', padding: '3px', height:'45px'}}>
                     <CardTitle tag="h3" className={"text-center"}><Row><Col>Employee Detail</Col>
                         <Col>

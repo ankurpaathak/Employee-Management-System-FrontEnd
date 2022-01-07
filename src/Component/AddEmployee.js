@@ -4,11 +4,11 @@ import axios from "axios";
 import base_url from "./bootApi";
 import {toast} from "react-toastify";
 import {CardBody, Input} from "reactstrap";
+import {getToken} from "./Utility";
 
 
 const AddEmployee = () => {
-
-    useEffect(() => {
+        useEffect(() => {
         document.title = "Add Employee || Billing System";
 
     }, []);
@@ -22,7 +22,12 @@ const AddEmployee = () => {
     };
 
     const postDataToServer = (data) => {
-        axios.post(`${base_url}/employee/create`, data).then(
+        axios.post(`${base_url}/employee/create`, data,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        }).then(
         (response) => {
             console.log(response);
             console.log("success");

@@ -1,27 +1,28 @@
 import './App.css';
-import {ToastContainer} from "react-toastify";
-import {Container, Row} from "react-bootstrap";
+import {Button, Container, Row} from "react-bootstrap";
 import {Col} from "reactstrap";
 import Header from "./Component/Header";
 import EmployeeList from "./Component/EmployeeList";
 import AddEmployee from "./Component/AddEmployee";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
 import AddAttendance from "./Component/AddAttendance";
 import AddExpense from "./Component/AddExpense";
 import EmployeeDetails from "./Component/EmployeeDetails";
 import UpdateEmployee from "./Component/UpdateEmployee";
 import UpdateAttendance from "./Component/UpdateAttendance";
 import UpdateExpense from "./Component/UpdateExpense";
+import React from "react";
 
 function App() {
-    return (
+        return (
         <div>
             <Router>
-                <ToastContainer/>
                 <Header/>
-                <Container style={{position:'relative',right:'4.5%'}}>
+                <Container style={{position: 'relative', right: '4.5%'}}>
                     <Row>
                         <Col md={4}>
+                            <Link to="/add-employee"><Button className="m-lg-2"
+                            size='lg' style={{width:'95%',height:'7%',padding:'1px'}}>Add Employee</Button></Link>
                             <EmployeeList/>
                         </Col>
                         <Col md={8}>

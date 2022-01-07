@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import base_url from "./bootApi";
 import {CardBody, CardTitle} from "reactstrap";
+import {getToken} from "./Utility";
 
 
 const Employee = ({employee}) => {
@@ -34,9 +35,16 @@ const Employee = ({employee}) => {
 }
 
 const Employees = () => {
+    const token = getToken()
+    console.log("Token : ", token);
     useEffect(()=>{
         document.title = "Employee List || Billing System";
-        axios.get(`${base_url}/employee/getAll`).then(
+        axios.get(`${base_url}/employee/getAll`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(
             (response) => {
                 console.log(response);
                 setEmployee(response.data)
@@ -44,7 +52,9 @@ const Employees = () => {
             (error) => {
                 console.log(error);
             }
-        );
+        ).catch((reason)=>{
+            console.log("reason : ", reason)
+        });
     },[])
 
     const [employeeList, setEmployee] = useState([])

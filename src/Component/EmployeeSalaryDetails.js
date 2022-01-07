@@ -2,13 +2,19 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import base_url from "./bootApi";
 import {Col, Row} from "react-bootstrap";
+import {getToken} from "./Utility";
 
 const EmployeeSalaryDetails = ({empId, month, year}) => {
     const [salary, setSalary] = useState([])
 
     useEffect(() => {
         document.title = "Employee Detail || Billing System";
-        axios.get(`${base_url}/salary/employee/${empId}?month=${month}&year=${year}`).then(
+        axios.get(`${base_url}/salary/employee/${empId}?month=${month}&year=${year}`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        }).then(
             (response) => {
                 console.log(response);
                 setSalary(response.data)

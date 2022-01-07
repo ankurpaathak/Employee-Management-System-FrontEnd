@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 import {useParams} from "react-router-dom";
 import moment from "moment";
 import {CardBody, Input} from "reactstrap";
+import {getToken} from "./Utility";
 
 const AddAttendance = () => {
     const [attendance, setAttendance] = useState({});
@@ -31,7 +32,12 @@ const AddAttendance = () => {
 
     const postAttendance = (data) => {
         console.log("data :- ", data);
-        axios.post(`${base_url}/attendance/mark`, data).then(
+        axios.post(`${base_url}/attendance/mark`, data,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        }).then(
             (response) => {
                 console.log(response);
                 console.log("success");

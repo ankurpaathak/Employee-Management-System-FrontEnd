@@ -5,13 +5,19 @@ import {Table} from "react-bootstrap";
 import moment from "moment";
 import {Button} from "reactstrap";
 import {Link} from "react-router-dom";
+import {getToken} from "./Utility";
 
 
 const GetAllExpense=({empId,month,year})=> {
     const [expenseList, setExpense] = useState([])
     useEffect(() => {
         document.title = "Employee Detail || Billing System";
-        axios.get(`${base_url}/expense/employee/?empId=${empId}&month=${month}&year=${year}`).then(
+        axios.get(`${base_url}/expense/employee/?empId=${empId}&month=${month}&year=${year}`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        }).then(
             (response) => {
                 console.log(response);
                 setExpense(response.data)

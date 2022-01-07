@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import base_url from "./bootApi";
 import {toast} from "react-toastify";
+import {getToken} from "./Utility";
 
 const UpdateEmployee=()=>{
     const {empId} = useParams();
@@ -13,7 +14,12 @@ const UpdateEmployee=()=>{
 
     useEffect(() => {
         document.title = "Edit Employee || Billing System";
-        axios.get(`${base_url}/employee/${empId}`).then(
+        axios.get(`${base_url}/employee/${empId}`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        }).then(
             (response) => {
                 console.log(response);
                 editSetEmployee(response.data)
@@ -30,7 +36,12 @@ const UpdateEmployee=()=>{
     };
 
     const updateDataToServer = (data) => {
-        axios.put(`${base_url}/employee/update`, data).then(
+        axios.put(`${base_url}/employee/update`, data,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }
+        }).then(
             (response) => {
                 console.log(response);
                 console.log("success");
@@ -43,6 +54,10 @@ const UpdateEmployee=()=>{
             }
         );
     };
+
+    const clearField=()=>{
+        editSetEmployee("");
+    }
 
     return (
         <Card style={{ marginTop: 5,width: '115%'}}>
@@ -75,7 +90,7 @@ const UpdateEmployee=()=>{
                             }}/>
                         </Form.Group>
                         <Button variant="outline-primary" type="submit" size="sm" className={"m-lg-2"} style={{transition:'0.1s'}}>Submit</Button>
-                        <Button variant="outline-danger" type="reset" size="sm" className={"m-lg-2"}>Clear</Button>
+                        <Button variant="outline-danger" type="reset" size="sm" className={"m-lg-2"} onClick={clearField}>Clear</Button>
                     </Form>
                 </Fragment>
             </CardBody>
