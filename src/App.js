@@ -12,10 +12,12 @@ import UpdateEmployee from "./Component/UpdateEmployee";
 import UpdateAttendance from "./Component/UpdateAttendance";
 import UpdateExpense from "./Component/UpdateExpense";
 import React from "react";
+import {ToastContainer} from "react-toastify";
 
 function App() {
         return (
         <div>
+            <ToastContainer/>
             <Router>
                 <Header/>
                 <Container style={{position: 'relative', right: '4.5%'}}>

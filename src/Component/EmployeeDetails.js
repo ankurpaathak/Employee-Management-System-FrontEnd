@@ -82,7 +82,7 @@ const EmployeeDetails = () => {
                         </Col>
                     </Row></CardTitle>
                 </CardBody>
-                <CardBody style={{backgroundColor: '', position:'relative',left:'8%',height:'120px'}}>
+                <CardBody style={{position:'relative',left:'8%',height:'120px'}}>
                     <Row>
                         <Col>
                             <Row><Col><h6><b>Id</b></h6></Col><Col><h6>{employee.empId}</h6></Col></Row>
@@ -95,7 +95,7 @@ const EmployeeDetails = () => {
                         </Col>
                     </Row>
                 </CardBody>
-                <CardBody style={{backgroundColor: ''}}>
+                <CardBody>
                     <Row>
                         <Col>
                             <CardBody style={{backgroundColor: '#87bdd8', padding: '6px', height: '30px'}}>
